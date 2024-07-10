@@ -1,0 +1,45 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav [opened]="isSmallScreen" [mode]="isSmallScreen ? 'side' : 'over'" class="sidenav mat-elevation-z8" fixedInViewport role="navigation">
+      <mat-toolbar style="background-color: white;">
+        <button mat-button class="toolbar-header" (click)="goToHomePage()"><b>Thesis</b> Project</button>
+        <span class="toolbar-spacer"></span>
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+        <div *ngFor="let item of main">
+          <div *ngIf="!item.disabled">
+            <a mat-list-item [routerLink]="item.route" routerLinkActive="active" (click)="closeNav(snav)">
+              <div mat-line>{{item.displayName}}</div>
+              <span *ngIf="item.children && item.children.length">
+                <mat-icon [@indicatorRotate]="item.expanded ? 'expanded': 'collapsed'">
+                  expand_more
+                </mat-icon>
+              </span>
+            </a>
+          </div>
+        </div>
+        <mat-divider *ngIf="mainLength > 0"></mat-divider>
+        <h3 matSubheader *ngIf="componentsLength > 0 && displayComponentHeader">
+          {{'menu.componentHeader' | translate}}
+        </h3>
+        <div *ngFor="let item of components">
+          <div *ngIf="!item.disabled">
+            <a mat-list-item [routerLink]="item.route" routerLinkActive="active" (click)="closeNav(snav)">
+              <div mat-line>{{item.displayName}}</div>
+              <span *ngIf="item.children && item.children.length">
+                <mat-icon [@indicatorRotate]="item.expanded ? 'expanded': 'collapsed'">
+                  expand_more
+                </mat-icon>
+              </span>
+            </a>
+          </div>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <div class="app-sidenav-content">
+        <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+        <div class="wrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-sidenav-container>

@@ -1,0 +1,44 @@
+{
+  "cnn-model": {
+    "title": "CNN Model"
+  },
+  "mobile-net-v2-model": {
+    "title": "MobileNetV2 Model"
+  },
+  "inception-res-net-v2-model": {
+    "title": "InceptionResNetV2 Model"
+  },
+  "404": {
+    "title": "404.",
+    "text": "The page you are looking for does not exist.You can click the button below to go back to the homepage.",
+    "button": "Home"
+  },
+  
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "add": "Add"
+  },
+  "snackBars": {
+    "success": {
+      "login": "Login successfully",
+      "save": "Saved successfully",
+      "delete": "Successfully deleted"
+    },
+    "errors": {
+      "login": "Error logging in",
+      "save": "Error saving entry",
+      "delete": "Error deleting entry",
+      "differentPassword": "Passwords are different"
+    }
+  },
+  "menu": {
+    "componentHeader": "Components",
+    "mainMenu": {},
+    "componentMenu": { 
+      "cnn-model": "CNN Model",
+      "mobile-net-v2-model": "MobileNetV2 Model",
+      "inception-res-net-v2-model": "InceptionResNetV2 Model"
+    }
+  }
+}

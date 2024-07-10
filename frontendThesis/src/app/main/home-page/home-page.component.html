@@ -1,0 +1,89 @@
+<div class="new-section-content">
+    <div class="title-left">
+        <h1>Machine Learning Algorithms for Clothing Articles Classification</h1>
+    </div>
+    <div class="image-right">
+        <img src="../../../assets/images/image1.svg"/>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <mat-card (click)="goToCNN()" class="shadow-sm p-3 mb-5 matcard rounded clickable-card">
+      <mat-card-content>
+        <div class="image-model-cnn">
+          <img src="../../../assets/images/cnn.png"/>
+        </div>
+        <h3>CNN (Convolutional Neural Network)</h3>
+        <p>A deep learning architecture designed for processing structured grid-like data, particularly images, by leveraging convolutional layers that automatically learn hierarchical patterns and spatial dependencies in the data.</p>
+      </mat-card-content>
+    </mat-card>
+   </div>
+   <div class="col">
+    <mat-card (click)="goToMobileNetV2()" class="shadow-sm p-3 mb-5 matcard rounded clickable-card">
+      <mat-card-content>
+        <div class="image-model-mobile">
+          <img src="../../../assets/images/mobile.png"/>
+        </div>
+        <h3>MobileNetV2</h3>
+        <p>A lightweight deep learning model optimized for mobile and embedded vision applications, characterized by depthwise separable convolutions that significantly reduce computational cost while maintaining high accuracy.</p>
+      </mat-card-content>
+    </mat-card>
+   </div>
+   <div class="col">
+    <mat-card (click)="goToInceptionResNetV2()" class="shadow-sm p-3 mb-5 matcard rounded clickable-card">
+      <mat-card-content>
+        <div class="image-model-inception">
+          <img src="../../../assets/images/inception.png"/>
+        </div>
+        <h3>InceptionResNetV2</h3>
+        <p>A state-of-the-art deep convolutional neural network that integrates the Inception and ResNet architectures, combining the advantages of both to achieve superior performance in image classification and feature extraction tasks.</p>
+      </mat-card-content>
+    </mat-card>
+   </div>
+</div>
+
+<div class="row">
+    <div class="col">
+      <mat-card class="shadow-sm p-3 mb-5 matcard rounded">
+        <div class="tab-content">
+            <p>The comparative accuracy results per category of the trained models on the test dataset.</p>
+            <mat-divider></mat-divider>
+            <div id="chart" class="displayChart">
+                <apx-chart
+                    [series]="chartCategoryOptions.series!"
+                    [chart]="chartCategoryOptions.chart!"
+                    [dataLabels]="chartCategoryOptions.dataLabels!"
+                    [plotOptions]="chartCategoryOptions.plotOptions!"
+                    [yaxis]="chartCategoryOptions.yaxis!"
+                    [xaxis]="chartCategoryOptions.xaxis!"
+                    [legend]="chartCategoryOptions.legend!"
+                    [colors]="chartCategoryOptions.colors!"
+                    [grid]="chartCategoryOptions.grid!"
+                ></apx-chart>
+            </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="shadow-sm p-3 mb-5 matcard rounded">
+        <div class="tab-content">
+            <p>The comparative accuracy results per article type of the trained models on the test dataset.</p>
+            <mat-divider></mat-divider>
+            <div id="chart" class="displayChart">
+                <apx-chart
+                  [series]="chartArticleTypeOptions.series!"
+                  [chart]="chartArticleTypeOptions.chart!"
+                  [dataLabels]="chartArticleTypeOptions.dataLabels!"
+                  [plotOptions]="chartArticleTypeOptions.plotOptions!"
+                  [yaxis]="chartArticleTypeOptions.yaxis!"
+                  [xaxis]="chartArticleTypeOptions.xaxis!"
+                  [legend]="chartArticleTypeOptions.legend!"
+                  [colors]="chartArticleTypeOptions.colors!"
+                  [grid]="chartArticleTypeOptions.grid!"
+                ></apx-chart>
+            </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  

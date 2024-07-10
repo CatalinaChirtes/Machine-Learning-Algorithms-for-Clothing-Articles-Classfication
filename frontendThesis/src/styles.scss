@@ -1,0 +1,96 @@
+// Custom Theming for Angular Material
+@use '../node_modules/@angular/material' as mat;
+// For more information: https://material.angular.io/guide/theming
+@import '../node_modules/@angular/material/index';
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
+@include mat.all-component-typographies();
+@include mat.core();
+
+
+// To generate a custom color palette: http://mcg.mbitson.com/
+// TODO: Add custom color if needed
+$customColor: (50 : #F3E5F5,
+100 : #E1BEE7,
+200 : #CE93D8,
+300 : #BA68C8,
+400 : #AB47BC,
+500 : #9C27B0,
+600 : #8E24AA,
+700 : #7B1FA2,
+800 : #6A1B9A,
+900 : #4A148C,
+A100 : #EA80FC,
+A200 : #E040FB,
+A400 : #D500F9,
+A700 : #AA00FF,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  ));
+
+// Available color palettes: https://material.io/design/color/
+// TODO: Change primary color if needed
+$Custom-primary: mat.define-palette($customColor);
+$Custom-accent: mat.define-palette(mat.$blue-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$Custom-warn: mat.define-palette(mat.$red-palette);
+
+$Custom-theme: mat.define-light-theme((color: (primary: $Custom-primary,
+      accent: $Custom-accent,
+      warn: $Custom-warn,
+    )));
+
+@include mat.all-component-themes($Custom-theme);
+
+
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+// Add styles for quill editor
+@import 'quill/dist/quill.core.css';
+@import 'quill/dist/quill.bubble.css';
+@import 'quill/dist/quill.snow.css';
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+form {
+  display: grid;
+}
+
+.btnGroup {
+  button:not(:last-child) {
+    margin-right: 10px;
+  }
+}

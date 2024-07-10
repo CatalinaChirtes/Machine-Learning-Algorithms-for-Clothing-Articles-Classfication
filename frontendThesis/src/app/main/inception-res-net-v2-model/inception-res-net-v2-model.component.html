@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col">
+      <mat-card class="shadow-sm p-3 mb-5 matcard rounded">
+        <mat-tab-group>
+          <mat-tab label="InceptionResNetV2 Model Prediction">
+            <div class="tab-content">
+              <mat-divider></mat-divider>
+              <br>
+              <p>Predicting the clothing and article type for the uploaded image based on two models using the pretrained InceptionResNetV2 Model from the tensorflow.keras library:</p>
+              <br>
+              <div class="row">
+                <div class="column left" style="margin-bottom: 1em;">
+                  <div class="placeholder-container" *ngIf="!imageUrl">
+                    <div class="placeholder-rectangle">
+                      <mat-icon class="placeholder-icon">checkroom</mat-icon> 
+                    </div>
+                  </div>    
+                  <div class="placeholder-container" *ngIf="imageUrl">
+                    <img [src]="imageUrl" alt="Uploaded Image" class="uploaded-image">
+                  </div>
+                </div>
+                <div class="column right" style="margin-bottom: 1em;">
+                  <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+                  <button mat-raised-button (click)="fileInput.click()">Choose Image</button>
+                  <button mat-raised-button *ngIf="imageUrl" (click)="fileInput.files && onUpload(fileInput.files[0])" style="background-color: #4a148c5b; margin-left: 1em;">Upload</button>
+                  <p></p>
+                  <p *ngIf="selectedFileName">Selected File: {{ selectedFileName }}</p>
+                  <div *ngIf="model">
+                    <table mat-table [dataSource]="[model]">
+                      <!-- Category Column -->
+                      <ng-container matColumnDef="predicted_category">
+                        <th mat-header-cell *matHeaderCellDef>Category</th>
+                        <td mat-cell *matCellDef="let element">{{ element.predicted_category }}</td>
+                      </ng-container>
+                      <!-- Confidence Category Column -->
+                      <ng-container matColumnDef="confidence_category">
+                        <th mat-header-cell *matHeaderCellDef>Confidence Category</th>
+                        <td mat-cell *matCellDef="let element">{{ element.confidence_category }}</td>
+                      </ng-container>
+                      <!-- Article Type Column -->
+                      <ng-container matColumnDef="predicted_article_type">
+                        <th mat-header-cell *matHeaderCellDef>Article Type</th>
+                        <td mat-cell *matCellDef="let element">{{ element.predicted_article_type }}</td>
+                      </ng-container>
+                      <!-- Confidence Article Type Column -->
+                      <ng-container matColumnDef="confidence_article_type">
+                        <th mat-header-cell *matHeaderCellDef>Confidence Article Type</th>
+                        <td mat-cell *matCellDef="let element">{{ element.confidence_article_type }}</td>
+                      </ng-container>
+                      <!-- Table Rows -->
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </div>
+                  <mat-progress-spinner *ngIf="isLoading" diameter="70" strokeWidth="5" mode="indeterminate" style="margin:0 auto;"></mat-progress-spinner>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+  
+          <mat-tab label="Accuracy per Category">
+            <div class="tab-content">
+              <mat-divider></mat-divider>
+              <br>
+              <p>The accuracy results per category of the InceptionResNetV2 based Model on the test dataset.</p>
+              <div id="chart" class="displayChart">
+                <apx-chart
+                  [series]="chartCategoryOptions.series!"
+                  [chart]="chartCategoryOptions.chart!"
+                  [dataLabels]="chartCategoryOptions.dataLabels!"
+                  [plotOptions]="chartCategoryOptions.plotOptions!"
+                  [yaxis]="chartCategoryOptions.yaxis!"
+                  [xaxis]="chartCategoryOptions.xaxis!"
+                  [legend]="chartCategoryOptions.legend!"
+                  [colors]="chartCategoryOptions.colors!"
+                  [grid]="chartCategoryOptions.grid!"
+                ></apx-chart>
+              </div>
+            </div>
+          </mat-tab>
+  
+          <mat-tab label="Accuracy per Article Type">
+            <div class="tab-content" >
+              <mat-divider></mat-divider>
+              <br>
+              <p>The accuracy results per article type of the InceptionResNetV2 based Model on the test dataset.</p>
+              <div id="chart" class="displayChart">
+                <apx-chart
+                  [series]="chartArticleTypeOptions.series!"
+                  [chart]="chartArticleTypeOptions.chart!"
+                  [dataLabels]="chartArticleTypeOptions.dataLabels!"
+                  [plotOptions]="chartArticleTypeOptions.plotOptions!"
+                  [yaxis]="chartArticleTypeOptions.yaxis!"
+                  [xaxis]="chartArticleTypeOptions.xaxis!"
+                  [legend]="chartArticleTypeOptions.legend!"
+                  [colors]="chartArticleTypeOptions.colors!"
+                  [grid]="chartArticleTypeOptions.grid!"
+                ></apx-chart>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </div>
+  </div>
+  
